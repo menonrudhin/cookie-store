@@ -1,0 +1,12 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8d7da;
+  }
+  .menu-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+  }
