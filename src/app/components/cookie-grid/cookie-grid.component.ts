@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Cookie } from './cookie';
 
 @Component({
   selector: 'app-cookie-grid',
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./cookie-grid.component.css']
 })
 export class CookieGridComponent implements OnInit {
-  cookies: string[] = [];
+  cookies: Cookie[] = [];
   isLoading = true;
 
   constructor(private http: HttpClient) {}
@@ -21,7 +22,10 @@ export class CookieGridComponent implements OnInit {
       error: (err) => console.error('Failed to fetch cookie images:', err),
       complete: () => {
         temp.forEach( url => {
-          this.cookies.push(`http://localhost:3000${url}`);
+          // split('/').pop()?.split('.')?.[0]?.replaceAll('%20', ' ')
+          let cookie = new Cookie(url.split('/').pop()?.split('.')?.[0]?.replaceAll('%20', ' ') || 'Unknown Cookie',
+           `http://localhost:3000${url}`, +(Math.random() * (3.99 - 1.5) + 1.5).toFixed(2), 'Delicious cookie');
+          this.cookies.push(cookie);
         });
         this.isLoading = false;
       }

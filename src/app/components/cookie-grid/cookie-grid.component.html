@@ -1,9 +1,9 @@
 <div *ngIf="isLoading">Loading cookies...</div>
 <div class="grid" *ngIf="!isLoading">
   <div class="cookie-card" *ngFor="let cookie of cookies">
-    <img class="cookie-img" [src]="cookie" alt="cookie" />
+    <img class="cookie-img" [src]="cookie.imageUrl" alt="cookie" />
     <div class="cookie-label">
-      {{ cookie.split('/').pop()?.split('.')?.[0]?.replaceAll('%20', ' ') }}
+      {{ cookie.name }} {{ cookie.price | currency:'CAD':'symbol':'1.2-2' }}
     </div>
     <div class="add-to-cart"></div>
   </div>
